@@ -11,6 +11,7 @@ class Client < ActiveRecord::Base
 	validates :phone, presence: true
 	validates :datestamp, presence: true
 	validates :color, presence: true
+	validates :barber, inclusion: {in: %w('Jessie Pinkman' 'Walter White' 'Gus Fring')}
 end
 
 class Barber < ActiveRecord::Base
@@ -19,7 +20,6 @@ end
 class Contact < ActiveRecord::Base
 	validates :email, presence: true, format: { with: /@/}
 	validates :message, presence: true
-	#:format => /@/
 end
 
 before do
