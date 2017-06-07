@@ -4,3 +4,12 @@
 		<%= barber.name %>
 	</p>
 <% end %>
+<br />
+<hr />
+<br />
+<h2>Список наших клиентов</h2>
+<% @clients.each do |client| %>
+	<p>
+		<%= client.name %>, <%= client.phone %>, <%= client.datestamp %>, <%= client.barber %>, <%= client.color %>
+	</p>
+<% end %>

@@ -17,10 +17,10 @@ end
 
 before do
 	@barbers = Barber.all
+	@clients = Client.all
 end
 
 get '/' do
-	@barbers = Barber.all
 	erb :index			
 end
 
@@ -34,14 +34,8 @@ end
 
 post '/visit' do
 	
-	@username = params[:username]
-	@phone = params[:phone]
-	@datetime = params[:datetime]
-	@barber = params[:barber]
-	@color = params[:color]
-
-	user = Client.new(name: @username, phone: @phone, datestamp: @datetime, barber: @barber, color: @color)
-	user.save
+	c = Client.new params[:client]
+	c.save
 
 	erb "<h2>Спасибо #{@username}, Вы записались</h2>"
 end
