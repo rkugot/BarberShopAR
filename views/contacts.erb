@@ -4,12 +4,12 @@
 
 	<div class="form-group">
       <label>Ваша почта</label>
-      <input name="email" type="text" class="form-control" placeholder="Введите ваш email" value="<%= @email %>">
+      <input name="contact[email]" type="text" class="form-control" placeholder="Введите ваш email" value="<%= @contact.email %>">
     </div>
 
     <div class="form-group">
       <label>Ваше сообщение</label>
-      <textarea name="message" class="form-control" rows="3" placeholder="Ваше сообщение"><%= @message %></textarea>
+      <textarea name="contact[message]" class="form-control" rows="3" placeholder="Ваше сообщение"><%= @contact.message %></textarea>
     </div>
 
     <button type="submit" class="btn btn-primary">Отправить</button>

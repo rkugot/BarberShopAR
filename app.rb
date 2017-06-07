@@ -17,6 +17,9 @@ class Barber < ActiveRecord::Base
 end
 
 class Contact < ActiveRecord::Base
+	validates :email, presence: true, format: { with: /@/}
+	validates :message, presence: true
+	#:format => /@/
 end
 
 before do
@@ -28,6 +31,7 @@ get '/' do
 end
 
 get '/contacts' do
+	@contact = Contact.new
 	erb :contacts
 end
 
@@ -55,13 +59,13 @@ end
 
 post '/contacts' do
 
-	@email = params[:email]
-	@message = params[:message]
-
-	contact = Contact.new(email: @email, message: @message)
-	contact.save
-
-	erb "Ваше сообщение отправлено"
+	@contact = Contact.new params[:contact]
+	if @contact.save
+		erb "Ваше сообщение отправлено"
+	else
+		@error = @contact.errors.full_messages.first
+		erb :contacts
+	end
 end
 
 get '/bookings' do
