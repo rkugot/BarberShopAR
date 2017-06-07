@@ -21,7 +21,6 @@ end
 
 before do
 	@barbers = Barber.all
-	@clients = Client.all
 end
 
 get '/' do
@@ -63,4 +62,9 @@ post '/contacts' do
 	contact.save
 
 	erb "Ваше сообщение отправлено"
+end
+
+get '/bookings' do
+	@clients = Client.order "created_at DESC"
+	erb :bookings
 end
