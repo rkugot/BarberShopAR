@@ -11,7 +11,7 @@ class Client < ActiveRecord::Base
 	validates :phone, presence: true
 	validates :datestamp, presence: true
 	validates :color, presence: true
-	validates :barber, inclusion: {in: %w('Jessie Pinkman' 'Walter White' 'Gus Fring')}
+	validates :barber, inclusion: {in: ['Jessie Pinkman', 'Walter White', 'Gus Fring']}
 end
 
 class Barber < ActiveRecord::Base
@@ -46,8 +46,9 @@ get '/barber/:id' do
 end
 
 post '/visit' do
-	
+
 	@c = Client.new params[:client]
+	@barber = @c.barber
 	if @c.save
 		erb "Вы записались"
 	else
